@@ -1,0 +1,30 @@
+# Local secrets and settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Frontend
+node_modules/
+dist/
+build/
+coverage/
+
+# Local data and generated files
+uploads/
+*.log
+*.sqlite3
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
