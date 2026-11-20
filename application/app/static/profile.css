@@ -1,0 +1,27 @@
+.brand{width:fit-content;border-radius:7px;transition:filter .25s}
+.brand:hover{filter:brightness(1.12)}
+.workspace{transition:background .25s,border-color .25s}
+.workspace:hover{background:#b080eb0c;border-color:#c292ed3b}
+.profile-link{display:flex;align-items:center;gap:12px;flex:1;min-width:0;border-radius:10px}
+.profile-link:hover .profile-name{color:#e1b7ff}
+.profile-link .avatar,.profile-avatar{transition:box-shadow .25s,transform .25s}
+.profile-link:hover .avatar,.profile-avatar:hover{box-shadow:0 0 0 3px #c89efb20;transform:translateY(-1px)}
+.profile .profile-info{min-width:0}
+.breadcrumb-root:hover{color:#e2c8fa}
+.profile-overview{display:flex;align-items:center;gap:23px;padding:29px}
+.profile-overview h2{font-size:25px;overflow-wrap:anywhere}
+.profile-overview p{font-size:15px;margin-top:7px}
+.profile-large-avatar{width:76px;height:76px;border-radius:23px;font-size:28px;box-shadow:0 6px 26px #a36ad721}
+.profile-settings-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:25px;align-items:start}
+.profile-settings-grid .panel{margin-bottom:0}
+.settings-heading{display:flex;align-items:flex-start;gap:13px;margin:0 0 28px}
+.settings-heading>.icon{color:#c79deb;flex-shrink:0;margin-top:6px;width:23px;height:23px}
+.settings-heading h2{font-size:24px;letter-spacing:-.6px}
+.settings-heading p{font-size:14px;line-height:1.8;color:#b39ac6;margin-top:8px}
+.settings-security-note{border-top:1px solid var(--line);padding-top:19px;margin-top:24px;font-size:13px;color:#a68bb9;line-height:1.85}
+.main .readonly-input{color:#9e86b1;background:#100c1780;cursor:default}
+.profile-settings-grid .inline-error:empty{display:none}
+.profile-settings-grid .inline-error{padding:0 0 18px;font-size:14px;line-height:1.7}
+@media(max-width:1100px){.profile-settings-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:830px){.profile-link{justify-content:center;gap:0}.profile-overview{gap:17px;padding:24px}.profile-large-avatar{width:65px;height:65px;border-radius:19px;font-size:23px}}
+@media(max-width:600px){.profile-overview{flex-wrap:wrap;padding:23px 20px;gap:15px}.profile-overview .grow{min-width:130px}.profile-overview h2{font-size:22px}.profile-overview p{font-size:13px}.profile-overview>.pill{margin-left:0}.profile-large-avatar{width:54px;height:54px;border-radius:16px;font-size:21px}.settings-heading h2{font-size:22px}.settings-heading p{font-size:13px}.settings-heading{gap:11px;margin-bottom:24px}.profile-settings-grid{gap:20px}.settings-security-note{font-size:12px}.profile-settings-grid .btn{width:100%}}

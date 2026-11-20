@@ -1,0 +1,43 @@
+const {chromium}=require(process.env.STARTWORK_NODE_MODULES+'/playwright');
+const assert=require('node:assert/strict');
+const base=process.env.STARTWORK_TEST_URL||'http://127.0.0.1:8001';
+(async()=>{
+ const b=await chromium.launch({executablePath:process.env['ProgramFiles(x86)']+'/Microsoft/Edge/Application/msedge.exe',headless:true});
+ try{
+  const ctx=await b.newContext({viewport:{width:1920,height:1080},reducedMotion:'no-preference'});
+  const p=await ctx.newPage(),errors=[];p.on('pageerror',e=>errors.push(e.message));
+  await p.goto(base);await p.getByRole('heading',{name:'С возвращением'}).waitFor();await p.evaluate(()=>document.fonts.ready);
+  assert(await p.evaluate(()=>document.fonts.check('500 16px Manrope')));
+  await p.waitForTimeout(700);
+  assert(await p.evaluate(()=>document.getAnimations().length>=5));
+  const target=p.getByRole('button',{name:'Войти в пространство'}),box=await target.boundingBox();
+  await p.mouse.move(box.x+box.width*.75,box.y+box.height*.6);await p.waitForTimeout(550);
+  const motion=await target.evaluate(e=>({mx:e.style.getPropertyValue('--mx'),translate:e.style.translate,shadow:getComputedStyle(e).boxShadow}));
+  assert(motion.mx && motion.translate && motion.shadow!=='none');
+  assert.equal(await p.locator('.cursor-dot').evaluate(e=>getComputedStyle(e).display),'none');
+  await p.screenshot({path:'test-results/motion-auth.png',fullPage:true});
+  await p.getByRole('button',{name:'Создать аккаунт',exact:true}).click();
+  await p.getByRole('heading',{name:'Начнём знакомство'}).waitFor();
+  assert.equal(await p.locator('.auth-tab-glider').count(),1);
+  const login='motion_'+Date.now().toString().slice(-9);
+  const r=await ctx.request.post(base+'/api/auth/register',{headers:{'X-StartWork':'1'},data:{login,password:'test1',role:'mentor',name:'Александр'}});assert(r.ok());
+  await ctx.request.post(base+'/api/courses',{headers:{'X-StartWork':'1'},data:{title:'Первые шаги в команде',description:'Рабочие процессы и инструменты для уверенного старта.'}});
+  await p.goto(base);await p.getByRole('heading',{name:/Привет, Александр/}).waitFor();await p.locator('.course-card').waitFor();await p.waitForTimeout(900);
+  const card=p.locator('.course-card'),rect=await card.boundingBox();
+  await p.mouse.move(rect.x+rect.width*.8,rect.y+rect.height*.4);await p.waitForTimeout(550);
+  assert.match(await card.evaluate(e=>e.style.getPropertyValue('--ry')),/deg/);
+  assert.notEqual(await card.evaluate(e=>getComputedStyle(e).transform),'none');
+  await p.screenshot({path:'test-results/motion-dashboard.png',fullPage:true});
+  const create=p.getByRole('button',{name:'Создать курс',exact:true}),cr=await create.boundingBox();
+  await p.mouse.move(cr.x+cr.width/2,cr.y+cr.height/2);await p.mouse.down();
+  assert(await p.locator('.ripple').count());await p.mouse.up();await p.getByRole('dialog').waitFor();await p.keyboard.press('Escape');assert.equal(await p.getByRole('dialog').count(),0);
+  await p.setViewportSize({width:390,height:844});await p.waitForTimeout(500);
+  assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await p.screenshot({path:'test-results/motion-mobile.png',fullPage:true});
+  await p.emulateMedia({reducedMotion:'reduce'});await p.waitForTimeout(100);
+  assert.equal(await p.locator('.cursor-dot').evaluate(e=>getComputedStyle(e).display),'none');
+  assert.equal(await p.locator('.ambient-one').evaluate(e=>getComputedStyle(e).animationName),'none');
+  assert.deepEqual(errors,[]);
+  console.log('PASS: local font, animated scene, pointer glow, magnetic button, sliding tabs, card tilt, click ripple, modal, mobile, reduced-motion.');
+ }finally{await b.close();}
+})().catch(e=>{console.error(e);process.exitCode=1});

@@ -1,0 +1,44 @@
+/* Generic input sizing must not stretch checkbox controls. */
+.course-header-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;flex-shrink:0}
+.main .btn.danger,.modal .btn.danger{color:#f1b4b7;border-color:#ed9da544;background:#c66b7810}
+.main .btn.danger:hover,.modal .btn.danger:hover{background:#c66b7820;border-color:#ed9da580;box-shadow:none}
+.delete-course-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:21px;flex-wrap:wrap}
+#delete-error:empty{display:none}
+@media(max-width:600px){.course-header-actions{width:100%;gap:10px}.course-header-actions .btn{font-size:13px}.delete-course-actions .btn{flex:1;font-size:13px}}
+.modal input[type=checkbox],.modal input[type=radio],.main input[type=checkbox],.main input[type=radio]{min-height:0;padding:0;flex-shrink:0}
+.modal .check-label{align-items:flex-start;gap:13px;line-height:1.75}
+.modal .check-label input[type=checkbox]{width:20px;height:20px;min-height:20px;margin:3px 0 0;align-self:flex-start}
+.modal .check-label>span{flex:1;min-width:0}
+.assignment-modal{max-width:640px}
+.assignment-picker .field{margin-bottom:17px}
+.people-search{position:relative}
+.people-search>.icon{position:absolute;left:14px;top:16px;width:19px;height:19px;color:#a28ab6;pointer-events:none}
+.modal .people-search input{padding-left:44px}
+.selected-people{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.selected-people:empty{display:none}
+.selected-person{display:inline-flex;align-items:center;gap:7px;max-width:100%;border:1px solid #c399ef39;background:#ac7ae914;border-radius:7px;padding:6px 9px;color:#d6bce9;font-size:12px;text-align:left}
+.selected-person .icon{width:13px;height:13px}
+.selected-person:hover{background:#b582ee22;border-color:#c399ef77}
+.people-list-heading{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#a78cb9;margin-bottom:12px;gap:15px}
+.text-button{border:0;padding:3px 0;background:none;color:#cea4ef;font-size:12px}
+.text-button:hover{color:#e7caff}
+.people-list{max-height:290px;min-height:100px;overflow:auto;border:1px solid var(--line);border-radius:11px;background:#100b1977;scrollbar-width:thin;scrollbar-color:#75578c #191121}
+.person-choice{display:flex;align-items:center;gap:13px;padding:15px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .2s}
+.person-choice:last-child{border-bottom:0}
+.person-choice:hover{background:#a776dd0a}
+.person-choice:has(input:checked):not(.already-assigned){background:#af7bea12}
+.modal .person-choice input[type=checkbox]{width:19px;height:19px;min-height:19px;margin:0;accent-color:#bd91ee}
+.person-choice .avatar{width:36px;height:36px;min-width:36px;border-radius:10px;font-size:13px}
+.person-identity{flex:1;min-width:0}
+.person-identity strong{display:block;font-size:14px;font-weight:550;color:#e2ceef;overflow-wrap:anywhere}
+.person-identity small{display:block;font-size:12px;color:#a78cbb;margin-top:3px;overflow-wrap:anywhere}
+.person-choice .pill{font-size:10px;flex-shrink:0}
+.person-choice.already-assigned{cursor:default;opacity:.7}
+.people-empty,.people-loading{font-size:14px;line-height:1.8;padding:23px;color:#ac94be;text-align:center}
+.people-loading{display:flex;align-items:center;justify-content:center;gap:12px;min-height:110px}
+#more-people{margin-top:13px;width:100%}
+.assign-footer{display:flex;align-items:center;justify-content:space-between;gap:17px;border-top:1px solid var(--line);padding-top:20px;margin-top:20px}
+.assign-footer>span{font-size:13px;color:#b59ac7}
+.assignment-modal .inline-error:empty{display:none}
+.assignment-modal .inline-error{font-size:13px;line-height:1.7}
+@media(max-width:600px){.assignment-modal{padding:25px 19px}.person-choice{padding:13px 11px;gap:10px}.person-choice .avatar{display:none}.person-identity strong{font-size:14px}.person-identity small{font-size:12px}.person-choice .pill{font-size:9px;padding:3px 5px}.assign-footer{flex-direction:column;align-items:stretch;gap:13px}.assign-footer>span{text-align:center}.selected-person{font-size:11px}.people-list{max-height:260px}.modal .check-label input[type=checkbox]{margin-top:2px}}

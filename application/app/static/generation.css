@@ -1,0 +1,33 @@
+.generation-panel{position:relative;overflow:hidden;padding:30px 32px;margin:0 0 28px;border:1px solid #b98bed55;border-radius:18px;background:radial-gradient(ellipse at 100% 0,#9e64e02a,transparent 65%),linear-gradient(135deg,#24182f,#171122);box-shadow:0 12px 45px #05020d26;animation:rise .4s ease-out}
+.generation-panel:before{content:'';height:1px;position:absolute;top:0;left:10%;right:10%;background:linear-gradient(90deg,transparent,#d1a1ffb3,transparent)}
+.generation-header{display:flex;gap:18px;align-items:center;margin-bottom:20px}
+.generation-symbol{width:54px;height:54px;flex-shrink:0;border:1px solid #d1a6ff33;border-radius:15px;display:grid;place-items:center;background:#af77e719;color:#d8b4ff;box-shadow:0 0 25px #a35de813}
+.generation-symbol .spinner{width:25px;height:25px;border-width:2px}
+.generation-symbol>.icon{width:26px;height:26px}
+.generation-header .eyebrow{font-size:10px;letter-spacing:1.7px;margin-bottom:7px}
+.generation-header h2{font-size:27px;line-height:1.3}
+.generation-time{color:#bca3cb;font-size:13px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.generation-message{font-size:16px;color:#d3bcdf;line-height:1.85;min-height:30px}
+.generation-stages{list-style:none;padding:0;margin:28px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.generation-stages li{position:relative;display:flex;gap:11px;align-items:center;font-size:13px;color:#8e7c9d}
+.generation-stages li>span{display:grid;place-items:center;position:relative;flex-shrink:0;width:32px;height:32px;border:1px solid #b88bd529;border-radius:50%;background:#1b1227;font-size:11px;transition:background .4s,border-color .4s,color .4s}
+.generation-stages strong{font-weight:550;line-height:1.5}
+.generation-stages .is-current{color:#ebd9fc}
+.generation-stages .is-current>span{border-color:#c896fcb3;background:#a66ae928;color:#ead7ff;box-shadow:0 0 0 5px #b27bf10b,0 0 18px #b27bf11f;animation:stage-breathe 2.5s ease-in-out infinite}
+.generation-stages .is-done{color:#c8c1d7}.generation-stages .is-done>span{background:#9ed0b619;border-color:#9ed0b64d;color:#b5e0c8}
+.generation-stages .icon{width:17px;height:17px}
+.generation-count{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:13px;line-height:1.7;color:#ae98bd;margin-bottom:11px}
+.generation-count strong{font-weight:650;color:#e2cdef}
+.generation-count>span:last-child{font-size:12px;color:#9a83ab}
+.generation-progress{display:block;width:100%;height:9px;overflow:hidden;border:0;border-radius:9px;background:#a675d51a;accent-color:#c08ce9}
+.generation-progress::-webkit-progress-bar{background:#b589d61a;border-radius:9px}
+.generation-progress::-webkit-progress-value{background:linear-gradient(90deg,#a16df3,#c08eea,#e5a3d9);border-radius:9px;transition:width .6s ease}
+.generation-progress::-moz-progress-bar{background:linear-gradient(90deg,#a16df3,#e5a3d9);border-radius:9px}
+.generation-hint{font-size:13px;line-height:1.85;color:#ad97be;margin-top:15px;min-height:24px}
+.generation-error{border-color:#d69a9a5c;background:linear-gradient(135deg,#31202b,#1e1423)}
+.generation-error .generation-symbol{color:#e3b3af;background:#d69a9a12;border-color:#d69a9a38}
+#job-status{scroll-margin-top:24px}
+@keyframes stage-breathe{0%,100%{box-shadow:0 0 0 4px #b27bf109,0 0 14px #b27bf114}50%{box-shadow:0 0 0 6px #b27bf110,0 0 23px #b27bf12b}}
+@media(max-width:1100px){.generation-panel{padding:26px}.generation-stages{grid-template-columns:repeat(2,minmax(0,1fr));gap:19px}.generation-stages li{font-size:14px}}
+@media(max-width:600px){.generation-panel{padding:22px 19px}.generation-header{gap:13px;align-items:flex-start;flex-wrap:wrap}.generation-header .grow{min-width:150px}.generation-symbol{width:44px;height:44px;border-radius:12px}.generation-header h2{font-size:23px}.generation-header .eyebrow{font-size:9px}.generation-time{font-size:12px;padding-left:57px}.generation-message{font-size:14px}.generation-stages{grid-template-columns:1fr;gap:16px;margin:23px 0}.generation-stages li{font-size:14px}.generation-count{align-items:flex-start;flex-direction:column;gap:4px;font-size:12px}.generation-count>span:last-child{font-size:11px}.generation-hint{font-size:12px;line-height:1.9}}
+@media(prefers-reduced-motion:reduce){.generation-panel,.generation-stages .is-current>span{animation:none}.generation-progress::-webkit-progress-value{transition:none}}
