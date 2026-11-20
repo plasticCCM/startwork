@@ -1,0 +1,18 @@
+services:
+  database:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: startwork
+      POSTGRES_USER: startwork
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-startwork_local}
+    ports:
+      - "127.0.0.1:5438:5432"
+    volumes:
+      - startwork_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U startwork"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  startwork_pg:
